@@ -1,6 +1,12 @@
 405/
 result/
+experimental/
+.reqs
 .ipynb_checkpoints/
+*John*
 *.pdf
 *.pptx
 *.png
+*.jpg
+*.jpeg
+!final_1807.pdf
