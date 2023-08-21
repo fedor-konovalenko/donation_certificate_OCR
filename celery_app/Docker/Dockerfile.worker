@@ -1,0 +1,13 @@
+FROM python:3.9
+
+COPY /app /app
+COPY Docker/requirements.txt /app
+WORKDIR /app
+
+
+RUN apt-get update && apt-get install -y libgl1-mesa-glx tesseract-ocr
+RUN apt-get install -y wget && \ 
+    wget https://github.com/tesseract-ocr/tessdata/raw/main/rus.traineddata -P /usr/share/tesseract-ocr/5/tessdata/
+RUN pip install -r requirements.txt
+
+CMD ["celery", "-A", "app.celery_app", "worker", "--loglevel=info"]
